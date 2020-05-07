@@ -9,7 +9,7 @@
     <meta name="generator" content="Jekyll v3.8.6">
 
 
-    <title>Kevin Catanella</title>
+    <title>Kevin's Blog</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/album/">
 
@@ -56,46 +56,33 @@
         <div class="navbar-nav ml-auto">
           <a class="nav-item nav-link" href="https://linkedin.com/in/kevin-catanella-872735162/">Linkedin </a>
           <a class="nav-item nav-link" href="{% static 'Catanella, Kevin Reume 2020.pdf' %}">Resume</a>
-          <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+          <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
         </div>
       </div>
     </nav>
 </header>
 
 <main role="main">
+  <div class="container">
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Hello, I'm Kevin. Welcome to my page!</h1>
-      <p class="lead text-muted"> I love to make websites and code. On this website you can see all my work, and contact me if you'd like.</p>
-      <p>
-        <a href="mailto:kcatanella7792@yahoo.com" class="btn btn-primary my-2">Email Me</a>
-      </p>
-      <img src="{% static 'Headshot.JPG' %}" height="300" />
-    </div>
-  </section>
+  <h1 class="text-center pt-3">Welcome to Kevin's Blog</h1>
+  <br />
+  <br />
+  <h2>Latest Posts</h2>
+  <hr />
 
-  <div class="album py-5 bg-light">
-    <div class="container">
+  {% for blog in blogs.all %}
+  <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+  {{ blog.pub_date_pretty }}
+  <br />
+  <img class="img-fluid" src="{{ blog.images.url }}" hight=200 width=200/>
+  <br />
+  <p>{{ blog.summary }}</p>
+  {% endfor %}
 
-      <div class="row">
+</div>
 
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" src="{{ job.image.url }}" />
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
 
-          </div>
-        </div>
-        <div class="col-md-4">
-      </div>
-    </div>
 
 </main>
 
